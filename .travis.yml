@@ -1,3 +1,12 @@
 language: node_js
 node_js:
-  - "6.2.0"
+- 6.2.0
+deploy:
+  provider: openshift
+  user: volcanosis01@gmail.com
+  password:
+    secure: ZqHXPzaQPb0CzrKAgcEEXTJ+CsGgWHCPKur6HatVlj1wEP5U3tMbqSvXnsSFXbp6RdwwFfsCTVeQEcnjPiOlGX9gS0x/EDwxQA8RI6F1zOKhbV7dcGmtdGArEHYH8xv94clN7IfkbG6dkJ1FT0N+gFEsq+GMrcYAsGmKlak0Ne8WaFlFkn08xKyOd6J2LVHLtzovtzGy9q3ugpad4KDPqCf3lIPNwZv+dykTc7Xqg+3fNgzVvOwUyJYcuDOkN7yrcuEkKwKjxbh6HxNmPt1G3umtZF2HxaRYSRdni5MNU5yalddskVgI/SqvQKmN3LRb0uAd5pRkoOfIbqGRZ7RcfBLhK2m6fvNjEdwZB1lSDHQb0HtVamHoGdvykvmUJJqmoazA/Q3wVAmXVsjFGbq9is6hMcH3w8aqrhtm1QgnW8Qv+4KQ2Fa3BquDdKB2h1J72/RbZ06bFnMYwvm6YamUonzTB+VwQU8JnPKqMOZnK+puatlGW6JAlm/tjKIeKMOnMNlVXdyW6Uy6zmMPd/nhVx0376bSJePAW9YHGJwT1F0bxNaMmewDhfXr7pD/MhozDQDVELu6DaUtaSP+fTXcE9xkXqR2HfuUB/aUdTp8sN2EIO0WFFZgk7x8QKDvzgqVvRLRiLFh91jJFvTVoubUS0GW9EqhY0nTvOpebZQ1fEI=
+  app: ridesgo
+  domain: http://redygo-ridesgo.rhcloud.com/
+  on:
+    repo: Minisis/RdyGo-service
