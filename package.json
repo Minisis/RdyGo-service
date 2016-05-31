@@ -2,13 +2,12 @@
   "name": "realestate-app",
   "version": "1.0.0",
   "description": "Application to sell, buy and lease real estates",
-  "main": "server.js",
+  "main": "bin/rdygo-service.js",
   "scripts": {
     "pretest": "eslint bin/ server/ test/",
     "test": "CONFIGURATION=config.json ENVIRONMENT=local mocha -t 10000 -R spec test",
     "start": "./bin/rdygo-service.js -c config.json -e dev"
   },
-  "main": "bin/rdygo-service.js",
   "keywords": [
     "real",
     "estate",
@@ -19,6 +18,7 @@
   "author": "Luis Valdovinos",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^2.11.1",
     "mocha": "^2.3.3",
     "should": "^7.1.0",
     "supertest": "^1.1.0"
