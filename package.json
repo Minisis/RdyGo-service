@@ -1,7 +1,7 @@
 {
-  "name": "realestate-app",
+  "name": "rdygo-service",
   "version": "1.0.0",
-  "description": "Application to sell, buy and lease real estates",
+  "description": "Services for all rdygo clients",
   "main": "bin/rdygo-service.js",
   "scripts": {
     "pretest": "eslint bin/ server/ test/",
@@ -9,8 +9,7 @@
     "start": "./bin/rdygo-service.js -c config.json -e dev"
   },
   "keywords": [
-    "real",
-    "estate",
+    "rdygo",
     "api",
     "node",
     "js"

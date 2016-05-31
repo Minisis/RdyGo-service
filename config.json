@@ -1,0 +1,12 @@
+{
+  "defaults": {
+    "port": 3000
+  },
+  "local": {
+    "ip": "127.0.0.1"
+  },
+  "dev": {
+    "ip": "$OPENSHIFT_NODEJS_IP",
+    "port": "$OPENSHIFT_NODEJS_PORT"
+  }
+}
