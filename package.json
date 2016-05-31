@@ -1,0 +1,32 @@
+{
+  "name": "realestate-app",
+  "version": "1.0.0",
+  "description": "Application to sell, buy and lease real estates",
+  "main": "server.js",
+  "scripts": {
+    "pretest": "eslint bin/ server/ test/",
+    "test": "CONFIGURATION=config.json ENVIRONMENT=local mocha -t 10000 -R spec test"
+  },
+  "keywords": [
+    "real",
+    "estate",
+    "api",
+    "node",
+    "js"
+  ],
+  "author": "Luis Valdovinos",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "should": "^7.1.0",
+    "supertest": "^1.1.0"
+  },
+  "dependencies": {
+    "body-parser": "1.14.1",
+    "commander": "2.9.0",
+    "express": "4.13.3",
+    "express-wr": "1.0.2",
+    "my-config": "2.0.0",
+    "winston": "^2.2.0"
+  }
+}
