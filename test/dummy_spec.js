@@ -29,7 +29,7 @@ describe('Dummy test', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        should(res.body.data.message).be.exactly('hello dude nice deploy!!');
+        should(res.body.data.message).be.exactly('hello dude nice deploy2!!');
         return done(null);
       });
   });
