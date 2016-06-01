@@ -22,14 +22,14 @@ describe('Dummy test', function() {
       });
     });
   });
-  it('Should return hello dude', function(done) {
+  it('Should return hello dude nice deploy!!', function(done) {
     request(app)
       .get('/hello')
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         if (err) return done(err);
-        should(res.body.data.message).be.exactly('hello dude');
+        should(res.body.data.message).be.exactly('hello dude nice deploy!!');
         return done(null);
       });
   });
