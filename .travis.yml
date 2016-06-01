@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - 6.2.0
+branches:
+  only:
+    - master
 deploy:
   provider: openshift
   user: msrdygo@gmail.com
@@ -11,4 +14,5 @@ deploy:
   on:
     repo: Minisis/RdyGo-service
 notifications:
+  on_pull_requests: false
   hipchat: 49d9d4bf5995139e617d88d31c243a@2744907
