@@ -22,7 +22,7 @@ describe('Dummy test', function() {
       });
     });
   });
-  it('Should return hello dude nice deploy!!', function(done) {
+  it('Should return hello dude nice deploy2!!', function(done) {
     request(app)
       .get('/hello')
       .expect(200)
