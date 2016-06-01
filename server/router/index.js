@@ -10,7 +10,7 @@ module.exports = function() {
   // hello world
   router.get('/hello', function(req, res) {
     express.wr(res, {
-      message: 'hello dude nice deploy!'
+      message: 'hello dude nice deploy!!'
     });
   });
   // 404 hanlder
