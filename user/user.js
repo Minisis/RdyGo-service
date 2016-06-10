@@ -15,7 +15,7 @@ var options = {
 mongoose.connect(dbConnectionString || localCredentials.mongo.dev.connectionString, options);
 
 //User model
-var NewUser = require('../models/newUser.js');
+var NewUser = require('../models/User.js');
 
 // user class
 function User(){

@@ -8,6 +8,6 @@ var appSchema = mongoose.Schema({
   IsActive : Boolean
 });
 
-var newUser = mongoose.model('newUser', appSchema);
+var User = mongoose.model('User', appSchema);
 
-module.exports = newUser;
+module.exports = User;
