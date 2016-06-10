@@ -27,6 +27,7 @@
     "commander": "2.9.0",
     "express": "4.13.3",
     "express-wr": "1.0.2",
+    "mongoose": "^4.4.20",
     "my-config": "2.0.0",
     "winston": "^2.2.0"
   }

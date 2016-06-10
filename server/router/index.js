@@ -2,7 +2,8 @@
 
 var express = require('express'),
   wr = require('express-wr'),
-  router = express.Router();
+  router = express.Router(),
+  Users = require('../../user/user.js');
 
 module.exports = function() {
   // add wr to express
@@ -13,6 +14,16 @@ module.exports = function() {
       message: 'hello dude nice hot deploy!!'
     });
   });
+
+  router.post('/user/new', function(req, res) {
+    var User = new Users();
+    User.createUser(req.body, function(err, data){
+      if (err) throw Error(err);
+
+      express.wr(res, {data: data});
+    });
+  });
+
   // 404 hanlder
   router.use(function(req, res) {
     express.wr(res, {
