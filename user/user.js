@@ -15,7 +15,7 @@ var options = {
 mongoose.connect(dbConnectionString || localCredentials.mongo.dev.connectionString, options);
 
 //User model
-var NewUser = require('../models/User.js');
+var user = require('../models/User.js');
 
 // user class
 function User(){
@@ -23,13 +23,16 @@ function User(){
   this.createUser = function(data, cb){
     if(!data) return cb('you must provide user data', null);
 
-    new NewUser({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
+    new user({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
       IsActive: true
     }).save(function(err){
-      if(err) return cb('Database connection err: ' + err)
+      if(err) return cb('Database connection err: ' + err);
+      console.log('user saved');
+      console.log(user._user);
+      cd(null, "lets return the object")
     })
 
   };
