@@ -2,8 +2,7 @@
 
 var express = require('express'),
   wr = require('express-wr'),
-  router = express.Router(),
-  Users = require('../../user/user.js');
+  router = express.Router();
 
 module.exports = function() {
   // add wr to express
