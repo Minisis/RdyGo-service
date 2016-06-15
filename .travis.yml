@@ -16,5 +16,5 @@ deploy:
 notifications:
   hipchat:
     rooms: 
-      -49d9d4bf5995139e617d88d31c243a@2744907
+      - 49d9d4bf5995139e617d88d31c243a@2744907
     on_pull_requests: false
