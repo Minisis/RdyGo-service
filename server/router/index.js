@@ -14,16 +14,6 @@ module.exports = function() {
       message: 'hello dude nice hot deploy!!'
     });
   });
-
-  router.post('/user/new', function(req, res) {
-    var User = new Users();
-    User.createUser(req.body, function(err, data){
-      if (err) throw Error(err);
-
-      express.wr(res, {data: data});
-    });
-  });
-
   // 404 hanlder
   router.use(function(req, res) {
     express.wr(res, {
