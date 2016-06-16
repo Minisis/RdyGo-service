@@ -18,3 +18,11 @@ notifications:
     rooms: 
       - 49d9d4bf5995139e617d88d31c243a@2744907
     on_pull_requests: false
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
