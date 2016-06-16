@@ -12,6 +12,11 @@
   },
   "dev": {
     "ip": "$OPENSHIFT_NODEJS_IP",
-    "port": "$OPENSHIFT_NODEJS_PORT"
+    "port": "$OPENSHIFT_NODEJS_PORT",
+    "mongo": {
+      "server": "$OPENSHIFT_MONGODB_SERVER",
+      "port": "$OPENSHIFT_MONGODB_PORT",
+      "db": "$OPENSHIFT_MONGODB_DB",
+    }
   }
 }
