@@ -1,3 +1,20 @@
 language: node_js
 node_js:
-  - "6.2.0"
+- 6.2.0
+branches:
+  only:
+    - master
+deploy:
+  provider: openshift
+  user: msrdygo@gmail.com
+  password:
+    secure: cH6jkMYw3K/c64OHIeszeBKYNoIhF2zx8mJlJ2UPOzgKTWVdj4gbDkquzFQVqm3+iKZk7mFuvHTSuSgKsckq2QulMyG3v8lT+EIpVRGs3GhYioqpKQ+paXqLidDrpXLkkwNNALhFegl0Secf6SAMkYMJwpSw2zrjIbrXIa/qLLydzotQcJwG/WIt/H9PvE4PP3OX3K8keD0bTGKNyclFq/4Fgk4hKyo+TmBBpwt0CzIuQWwksgGQ1j0+iQpbVT+LPAytTQdyXisugxfrxUYbqJ/VAxacn8l2qans09u+pp9u/6K1GGNgUMFSlsWWtpXsUOrNFkkrCSI2Y28TIJ533oJEszgeggjbCaR513bSPhNzj9O9aDxxgCixV34lvneLPppCWA8NJ6yb4ytMX3Xnk29yTt8WoHb3iF2EmimTtfVLxfCmUe6Aqm6tP0MakYA3rerl6URyZ4gXUYBgKfYwKNMA7L8IQ+7hVpdGUwerR5A1CZtEtfy2/gGKptRqYN/dOzaohv41GEFdwnEclNnF4bBFRVuEoyZw5JYE5OcY/feJ2SOB3O0je+84mGA7+HaWpVl/gNuCeWSdzYnPurLKTXIQSeIw3uA8/6+C9caeNH0770UPqPjG0HtzB2SR2sQeHuRljB7oInLoinsXhW9/9Vbe8JVMnXtgt/DT1oVcCbA=
+  app: service
+  domain: rdygo
+  on:
+    repo: Minisis/RdyGo-service
+notifications:
+  hipchat:
+    rooms: 
+      - 49d9d4bf5995139e617d88d31c243a@2744907
+    on_pull_requests: false

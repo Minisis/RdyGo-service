@@ -29,7 +29,7 @@
     "body-parser": "1.14.1",
     "commander": "2.9.0",
     "express": "4.13.3",
-    "express-wr": "1.0.2",
+    "express-wr": "1.0.2",    
     "my-config": "2.0.0",
     "winston": "^2.2.0"
   }
