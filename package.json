@@ -4,7 +4,7 @@
   "description": "Services for all rdygo clients",
   "main": "bin/rdygo-service.js",
   "scripts": {
-    "pretest": "eslint lib bin/ server/ test/",
+    "pretest": "eslint lib test/",
     "test": "CONFIGURATION=config.json ENVIRONMENT=local istanbul cover _mocha -- -t 10000 -R spec test",
     "start": "./bin/rdygo-service.js -c config.json -e dev"
   },
@@ -26,10 +26,13 @@
     "supertest": "^1.1.0"
   },
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "body-parser": "1.14.1",
     "commander": "2.9.0",
     "express": "4.13.3",
-    "express-wr": "1.0.2",    
+    "express-wr": "1.0.2",
+    "iron": "^4.0.1",
+    "moment": "^2.13.0",
     "my-config": "2.0.0",
     "winston": "^2.2.0"
   }

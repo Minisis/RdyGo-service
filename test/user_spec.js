@@ -49,7 +49,9 @@ describe('lib/user test suite', () => {
       should(tokens[0]).have.properties([
         'tkn',
         'device',
+        'createdBy',
       ]);
+      should(tokens[0].createdBy.username).be.exactly('lvaldovinos');
       should(tokens[0].device).be.an.Object();
       should(tokens[0].device.osVersion).be.exactly('iOS 10');
       should(tokens[0].device.model).be.exactly('iphone 6s');
