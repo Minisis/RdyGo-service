@@ -2,13 +2,16 @@
 
 ## Starting server
 ./bin/rdygo-service.js -c config.json -e local or dev
+
 <code>OR</code>
+
 node bin/rdygo-service.js -c config.json -e local or dev
 ## Installation
-<code>
-  git clone git@github.com:Minisis/RdyGo-service.git
-  cd RdyGo-service
-  npm install
+```
+git clone git@github.com:Minisis/RdyGo-service.git
+cd RdyGo-service
+npm install
+```
 </code>
 ## Regression tests
 <code>
