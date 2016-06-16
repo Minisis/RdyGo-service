@@ -4,8 +4,8 @@
   "description": "Services for all rdygo clients",
   "main": "bin/rdygo-service.js",
   "scripts": {
-    "pretest": "eslint bin/ server/ test/",
-    "test": "CONFIGURATION=config.json ENVIRONMENT=local mocha -t 10000 -R spec test",
+    "pretest": "eslint lib bin/ server/ test/",
+    "test": "CONFIGURATION=config.json ENVIRONMENT=local istanbul cover _mocha -- -t 10000 -R spec test",
     "start": "./bin/rdygo-service.js -c config.json -e dev"
   },
   "keywords": [
@@ -18,6 +18,9 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^2.11.1",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "istanbul": "^0.4.3",
     "mocha": "^2.3.3",
     "should": "^7.1.0",
     "supertest": "^1.1.0"

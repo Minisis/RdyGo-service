@@ -3,3 +3,4 @@ node_modules/
 *.swo
 server/tmp
 npm-debug.log
+coverage/
