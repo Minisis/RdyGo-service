@@ -34,6 +34,7 @@
     "express-wr": "1.0.2",
     "iron": "^4.0.1",
     "moment": "^2.13.0",
+    "mongoose": "^4.5.0",
     "my-config": "2.0.0",
     "winston": "^2.2.0"
   }
