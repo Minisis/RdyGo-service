@@ -6,7 +6,6 @@ var express = require('express'),
   router = require('./router'),
   app = express();
 
-
 // parse Content-Type application/json
 app.use(bodyParser.json({
   limit: '10mb'
