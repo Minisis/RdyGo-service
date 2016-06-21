@@ -7,7 +7,7 @@
     "mongo": {
       "server": "localhost",
       "port": 27017,
-      "db": "rdygo",
+      "db": "rdygo"
     }
   },
   "dev": {
@@ -16,7 +16,7 @@
     "mongo": {
       "server": "$OPENSHIFT_MONGODB_SERVER",
       "port": "$OPENSHIFT_MONGODB_PORT",
-      "db": "$OPENSHIFT_MONGODB_DB",
+      "db": "$OPENSHIFT_MONGODB_DB"
     }
   }
 }
