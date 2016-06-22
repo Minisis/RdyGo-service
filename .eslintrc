@@ -4,6 +4,7 @@
     "mocha": true
   },
   "rules": {
-    "strict": [2, "global"]
+    "strict": [2, "global"],
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   }
 }

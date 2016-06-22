@@ -3,10 +3,20 @@
     "port": 3000
   },
   "local": {
-    "ip": "127.0.0.1"
+    "ip": "127.0.0.1",
+    "mongo": {
+      "server": "localhost",
+      "port": 27017,
+      "db": "rdygo"
+    }
   },
   "dev": {
     "ip": "$OPENSHIFT_NODEJS_IP",
-    "port": "$OPENSHIFT_NODEJS_PORT"
+    "port": "$OPENSHIFT_NODEJS_PORT",
+    "mongo": {
+      "server": "$OPENSHIFT_MONGODB_SERVER",
+      "port": "$OPENSHIFT_MONGODB_PORT",
+      "db": "$OPENSHIFT_MONGODB_DB"
+    }
   }
 }
