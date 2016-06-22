@@ -15,6 +15,5 @@ npm install
 </code>
 ## Regression tests
 <code>
-  npm test
+  npm run-script test-local
 </code>
-
