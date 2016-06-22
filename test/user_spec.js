@@ -61,7 +61,7 @@ describe('lib/user test suite', () => {
   afterEach((done) => {
     user.remove(done);
   });
-  after((done) => {    
+  after((done) => {
     core.disconect(done);
   });
 });
