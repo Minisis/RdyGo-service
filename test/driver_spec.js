@@ -46,4 +46,7 @@ describe('lib/driver test suite', () => {
   afterEach((done) => {
     driver.remove(done);
   });
+  after((done) => {
+    core.disconect(done);
+  });
 });
