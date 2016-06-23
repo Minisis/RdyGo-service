@@ -3,9 +3,11 @@ const config = require('my-config');
 const should = require('should');
 const path = require('path');
 const Driver = core.Driver;
+const User = core.User;
 const configFile = process.env.CONFIGURATION;
 const env = process.env.ENVIRONMENT;
 let driver = {};
+let user = {};
 
 describe('lib/driver test suite', () => {
   before((done) => {
@@ -19,7 +21,17 @@ describe('lib/driver test suite', () => {
       return core
         .connect(configuration.mongo)
         .on('error', done)
-        .once('open', done);
+        .once('open', () => {
+          user = new User({
+            username: 'lvaldovinos',
+            password: '123456',
+            device: {
+              osVersion: 'iOS 10',
+              model: 'iphone 6s',
+            },
+          });
+          user.create(done);
+        });
     });
   });
   beforeEach((done) => {
@@ -28,6 +40,7 @@ describe('lib/driver test suite', () => {
       name: 'luis',
       city: 'GDL',
       phoneNumber: '3121212121',
+      userId: user._id,
     });
     driver.create(done);
   });
@@ -44,6 +57,7 @@ describe('lib/driver test suite', () => {
     });
   });
   afterEach((done) => {
+    user.remove();
     driver.remove(done);
   });
   after((done) => {
