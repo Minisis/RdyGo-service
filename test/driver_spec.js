@@ -2,6 +2,7 @@ const core = require('../lib/core');
 const config = require('my-config');
 const should = require('should');
 const path = require('path');
+const async = require('async');
 const Driver = core.Driver;
 const User = core.User;
 const configFile = process.env.CONFIGURATION;
@@ -57,10 +58,16 @@ describe('lib/driver test suite', () => {
     });
   });
   afterEach((done) => {
-    user.remove();
     driver.remove(done);
   });
   after((done) => {
-    core.disconect(done);
+    async.series([
+      (callback) => {
+        user.remove(callback);
+      },
+      (callback) => {
+        core.disconect(callback);
+      },
+    ], done);
   });
 });
