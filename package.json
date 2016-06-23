@@ -4,9 +4,9 @@
   "description": "Services for all rdygo clients",
   "main": "bin/rdygo-service.js",
   "scripts": {
-    "pretest": "eslint lib test/",
-    "test": "CONFIGURATION=config.json ENVIRONMENT=dev istanbul cover _mocha -- -t 10000 -R spec test",
-    "test-local": "CONFIGURATION=config.json ENVIRONMENT=local istanbul cover _mocha -- -t 10000 -R spec test",
+    "lint": "eslint lib test/",
+    "test": "npm run lint && CONFIGURATION=config.json ENVIRONMENT=dev istanbul cover _mocha -- -t 10000 -R spec test",
+    "test-local": "npm run lint && CONFIGURATION=config.json ENVIRONMENT=local istanbul cover _mocha -- -t 10000 -R spec test",
     "start": "./bin/rdygo-service.js -c config.json -e dev"
   },
   "keywords": [
