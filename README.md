@@ -17,3 +17,8 @@ npm install
 <code>
   npm run-script test-local
 </code>
+
+## Contributing
+If you want to contribute please see our
+[Contributing](https://github.com/Minisis/RdyGo-service/wiki/Submitting-Code) page.
+
