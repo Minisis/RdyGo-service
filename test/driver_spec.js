@@ -58,16 +58,24 @@ describe('lib/driver test suite', () => {
     });
   });
   it('Should create a car', (done) => {
-    driver.createCar({
-      carName: 'jeep',
-      availableSeats: 4,
-    }, (err, car) => {
-      if (err) return done(err);
-      // TODO make the assertions
-      return done(null);
-    });
+    async.series([
+      (callback) => {
+        driver.createCar({
+          carName: 'jeep',
+          availableSeats: 4,
+        }, callback);
+      },
+      (callback) => {
+        const cars = driver.getCars();
+        should(cars).be.an.Array();
+        should(cars[0].carName).be.exactly('jeep');
+        should(cars[0].availableSeats).be.exactly(4);
+        callback();
+      },
+    ]);
+    return done(null);
   });
-  it('Should find driver by userId', (done) => {
+  it('Should return an instance of driver by userId', (done) => {
     Driver.getByUserId(user._id, (err, driverModel) => {
       if (err) return done(err);
       should(driverModel).be.an.Object();
@@ -84,7 +92,6 @@ describe('lib/driver test suite', () => {
   });
   afterEach((done) => {
     driver.remove(done);
-    // done();
   });
   after((done) => {
     async.series([
