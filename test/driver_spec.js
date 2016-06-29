@@ -57,6 +57,20 @@ describe('lib/driver test suite', () => {
       return done(null);
     });
   });
+  it('Should find driver by userId', (done) => {
+    Driver.getByUserId(user._id, (err, driverModel) => {
+      if (err) return done(err);
+      should(driverModel).be.an.Object();
+      should(driverModel).be.an.instanceOf(Driver);
+      should(driverModel).have.property('userId', user._id).which.is.a.Object();
+      should(driverModel).have.property('email', 'lvaldovinos@gmail.com').which.is.a.String();
+      should(driverModel).have.property('name', 'luis').which.is.a.String();
+      should(driverModel).have.property('city', 'GDL').which.is.a.String();
+      should(driverModel).have.property('phoneNumber', '3121212121').which.is.a.String();
+      should(driverModel).have.property('createdOn', driverModel.createdOn).which.is.a.Object();
+      return done(null);
+    });
+  });
   afterEach((done) => {
     driver.remove(done);
   });
