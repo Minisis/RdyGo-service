@@ -3,8 +3,8 @@ const config = require('my-config');
 const should = require('should');
 const path = require('path');
 const async = require('async');
-const Driver = core.Driver;
 const User = core.User;
+const Driver = core.Driver;
 const configFile = process.env.CONFIGURATION;
 const env = process.env.ENVIRONMENT;
 let driver = {};
@@ -57,6 +57,16 @@ describe('lib/driver test suite', () => {
       return done(null);
     });
   });
+  it('Should create a car', (done) => {
+    driver.createCar({
+      carName: 'jeep',
+      availableSeats: 4,
+    }, (err, car) => {
+      if (err) return done(err);
+      // TODO make the assertions
+      return done(null);
+    });
+  });
   it('Should find driver by userId', (done) => {
     Driver.getByUserId(user._id, (err, driverModel) => {
       if (err) return done(err);
@@ -67,12 +77,14 @@ describe('lib/driver test suite', () => {
       should(driverModel).have.property('name', 'luis').which.is.a.String();
       should(driverModel).have.property('city', 'GDL').which.is.a.String();
       should(driverModel).have.property('phoneNumber', '3121212121').which.is.a.String();
+      should(driverModel).have.property('cars', []);
       should(driverModel).have.property('createdOn', driverModel.createdOn).which.is.a.Object();
       return done(null);
     });
   });
   afterEach((done) => {
     driver.remove(done);
+    // done();
   });
   after((done) => {
     async.series([
