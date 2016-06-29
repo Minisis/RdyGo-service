@@ -38,7 +38,7 @@ describe('lib/user test suite', () => {
     User.getAll((err, users) => {
       if (err) return done(err);
       should(users).be.an.Array();
-      should(users).have.length(1);
+      should(users.filter((u) => u.username === user.username)).have.length(1);
       should(users[0].username).be.exactly('lvaldovinos');
       return done(null);
     });
@@ -81,7 +81,6 @@ describe('lib/user test suite', () => {
     });
   });
   it('Should create a token once user is found by credentials', (done) => {
-    debugger;
     async.waterfall([
       (callback) => {
         User.getByCredentials({
@@ -98,7 +97,6 @@ describe('lib/user test suite', () => {
       },
       (existingUser, callback) => {
         existingUser.getTokens((err, tokens) => {
-          debugger;
           if (err) return callback(err);
           should(tokens).have.length(2);
           const deviceModels = tokens.reduce((prev, curr) => {
@@ -110,6 +108,32 @@ describe('lib/user test suite', () => {
         });
       },
     ], done);
+  });
+  it('Should successfully compare an existing token', (done) => {
+    async.waterfall([
+      (callback) => {
+        user.getTokens(callback);
+      },
+      (tokens, callback) => {
+        User.getByToken(tokens[0].tkn, callback);
+      },
+    ], (err, existingUser) => {
+      if (err) return done(err);
+      should(existingUser).containEql({
+        username: 'lvaldovinos',
+      });
+      should(existingUser).containEql({
+        _id: user._id,
+      });
+      return done(null);
+    });
+  });
+  it('Should return null when no user is found by token', (done) => {
+    User.getByToken('13241234lkajdhsfglakdhfg', (err, existingUser) => {
+      if (err) return done(err);
+      should(existingUser).be.exactly(null);
+      return done(null);
+    });
   });
   afterEach((done) => {
     user.remove(done);
