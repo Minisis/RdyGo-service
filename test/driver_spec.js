@@ -3,8 +3,8 @@ const config = require('my-config');
 const should = require('should');
 const path = require('path');
 const async = require('async');
-const Driver = core.Driver;
 const User = core.User;
+const Driver = core.Driver;
 const configFile = process.env.CONFIGURATION;
 const env = process.env.ENVIRONMENT;
 let driver = {};
@@ -57,7 +57,25 @@ describe('lib/driver test suite', () => {
       return done(null);
     });
   });
-  it('Should find driver by userId', (done) => {
+  it('Should create a car', (done) => {
+    async.series([
+      (callback) => {
+        driver.createCar({
+          carName: 'jeep',
+          availableSeats: 4,
+        }, callback);
+      },
+      (callback) => {
+        const cars = driver.getCars();
+        should(cars).be.an.Array();
+        should(cars[0].carName).be.exactly('jeep');
+        should(cars[0].availableSeats).be.exactly(4);
+        callback();
+      },
+    ]);
+    return done(null);
+  });
+  it('Should return an instance of driver by userId', (done) => {
     Driver.getByUserId(user._id, (err, driverModel) => {
       if (err) return done(err);
       should(driverModel).be.an.Object();
@@ -67,6 +85,7 @@ describe('lib/driver test suite', () => {
       should(driverModel).have.property('name', 'luis').which.is.a.String();
       should(driverModel).have.property('city', 'GDL').which.is.a.String();
       should(driverModel).have.property('phoneNumber', '3121212121').which.is.a.String();
+      should(driverModel).have.property('cars', []);
       should(driverModel).have.property('createdOn', driverModel.createdOn).which.is.a.Object();
       return done(null);
     });
