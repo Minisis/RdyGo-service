@@ -85,7 +85,7 @@ describe('lib/driver test suite', () => {
       should(driverModel).have.property('name', 'luis').which.is.a.String();
       should(driverModel).have.property('city', 'GDL').which.is.a.String();
       should(driverModel).have.property('phoneNumber', '3121212121').which.is.a.String();
-      should(driverModel).have.property('cars', []);
+      should(driverModel).have.property('cars').with.lengthOf(0);
       should(driverModel).have.property('createdOn', driverModel.createdOn).which.is.a.Object();
       return done(null);
     });
