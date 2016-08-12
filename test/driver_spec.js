@@ -35,6 +35,7 @@ describe('lib/driver test suite', () => {
         });
     });
   });
+
   beforeEach((done) => {
     driver = new Driver({
       email: 'lvaldovinos@gmail.com',
@@ -45,6 +46,15 @@ describe('lib/driver test suite', () => {
     });
     driver.create(done);
   });
+
+  it('should get a valid date', (done) => {
+    const currentDate = driver.getCurrentDate();
+    const parsedDate = new Date(currentDate);
+    should(parsedDate).be.an.instanceOf(Date);
+    should(parsedDate.toString()).not.eql('Invalid Date');
+    return done(null);
+  });
+
   it('Should create a new driver', (done) => {
     Driver.getAll((err, drivers) => {
       if (err) return done(err);
@@ -57,6 +67,7 @@ describe('lib/driver test suite', () => {
       return done(null);
     });
   });
+
   it('Should create a car', (done) => {
     async.series([
       (callback) => {
@@ -75,9 +86,9 @@ describe('lib/driver test suite', () => {
     ]);
     return done(null);
   });
+
   it('Should return an instance of driver by userId', (done) => {
     Driver.getByUserId(user._id, (err, driverModel) => {
-      if (err) return done(err);
       should(driverModel).be.an.Object();
       should(driverModel).be.an.instanceOf(Driver);
       should(driverModel).have.property('userId', user._id).which.is.a.Object();
@@ -87,12 +98,31 @@ describe('lib/driver test suite', () => {
       should(driverModel).have.property('phoneNumber', '3121212121').which.is.a.String();
       should(driverModel).have.property('cars').with.lengthOf(0);
       should(driverModel).have.property('createdOn', driverModel.createdOn).which.is.a.Object();
+      should(err).not.be.ok();
       return done(null);
     });
   });
+
+  it('Should return null object when driver was not found', (done) => {
+    const MockedUserId = '54a5450c0000000000000000';
+    Driver.getByUserId(MockedUserId, (err, driverModel) => {
+      should(driverModel).not.be.ok();
+      return done(null);
+    });
+  });
+
+  it('Should return err when invalid userId', (done) => {
+    const invalidMockedUserId = '1111111111111';
+    Driver.getByUserId(invalidMockedUserId, (err) => {
+      should(err).be.ok();
+      return done(null);
+    });
+  });
+
   afterEach((done) => {
     driver.remove(done);
   });
+
   after((done) => {
     async.series([
       (callback) => {
