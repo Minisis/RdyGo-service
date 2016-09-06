@@ -127,4 +127,7 @@ describe('lib/ride test suite', () => {
       },
     ], done);
   });
+  after((done) => {
+    core.disconect(done);
+  });
 });
