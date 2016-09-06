@@ -55,7 +55,6 @@ describe('lib/ride test suite', () => {
       },
       (d, c, callback) => {
         // add car to existing driver
-        debugger;
         driver
           .createCar({
             carName: 'civic',
@@ -65,7 +64,6 @@ describe('lib/ride test suite', () => {
     ], done);
   });
   beforeEach((done) => {
-    debugger;
     // create ride
     ride = new Ride({
       departureLocation: {
