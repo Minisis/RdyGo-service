@@ -43,6 +43,7 @@ describe('lib/driver test suite', () => {
       city: 'GDL',
       phoneNumber: '3121212121',
       userId: user._id,
+      isActive: true,
     });
     driver.create(done);
   });
@@ -64,6 +65,7 @@ describe('lib/driver test suite', () => {
       should(drivers[0].name).be.exactly('luis');
       should(drivers[0].city).be.exactly('GDL');
       should(drivers[0].phoneNumber).be.exactly('3121212121');
+      should(drivers[0].isActive).be.true();
       return done(null);
     });
   });
@@ -98,8 +100,16 @@ describe('lib/driver test suite', () => {
       should(driverModel).have.property('phoneNumber', '3121212121').which.is.a.String();
       should(driverModel).have.property('cars').with.lengthOf(0);
       should(driverModel).have.property('createdOn', driverModel.createdOn).which.is.a.Object();
+      should(driverModel).have.property('isActive', true);
       should(err).not.be.ok();
       return done(null);
+    });
+  });
+
+  it('Should set inactive user', (done) => {
+    driver.inactive(() => {
+      should(driver).have.property('isActive', false);
+      done(null);
     });
   });
 
