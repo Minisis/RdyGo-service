@@ -63,8 +63,7 @@ describe('lib/driver test suite', () => {
         });
         callback();
       },
-    ]);
-    done(null);
+    ], done);
   });
 
   it('should get a valid date', (done) => {
@@ -76,7 +75,6 @@ describe('lib/driver test suite', () => {
   });
 
   it('Should create a new WaitingList', (done) => {
-    console.log('hacke!');
     async.series([
       (callback) => {
         waitingList.create((err, savedWatingList, saved) => {
@@ -99,26 +97,21 @@ describe('lib/driver test suite', () => {
           should(parsedDepartureDate.toString()).not.eql('Invalid Date');
           should(savedWatingList.pickupLocation).be.eql({ lng: -103.3773148, lat: 20.712713 });
           should(savedWatingList.dropOffLocation).be.eql({ lng: -103.7008315, lat: 19.2665356 });
-          should(savedWatingList.driverId).be.exactly(driver._id);// TODO: checkar esto!
+          should(savedWatingList.driverId).be.exactly(driver._id);
           should(parsedCreatedOn).be.an.instanceOf(Date);
           should(parsedCreatedOn.toString()).not.eql('Invalid Date');
           should(savedWatingList.isActive).be.true();
 
-          // waitingList = savedWatingList;
-          console.log('first');
-          console.log(waitingList);
           callback();
         });
       },
       (callback) => {
-        console.log('second');
-        console.log(waitingList);
         // remove all assertions after get executed
         waitingList.remove(callback);
       },
-    ]);
+    ], done);
 
-    return done(null);
+    // return done(null);
   });
 
   it.skip('Should delete waitingList', (done) => {
