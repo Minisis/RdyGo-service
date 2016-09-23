@@ -106,15 +106,12 @@ describe('lib/driver test suite', () => {
         });
       },
       (callback) => {
-        // remove all assertions after get executed
         waitingList.remove(callback);
       },
     ], done);
-
-    // return done(null);
   });
 
-  it.skip('Should delete waitingList', (done) => {
+  it('Should delete waitingList', (done) => {
     async.series([
       (callback) => {
         // save new waitingList
@@ -133,12 +130,10 @@ describe('lib/driver test suite', () => {
           });
         });
       },
-    ]);
-
-    return done(null);
+    ], done);
   });
 
-  it.skip('Should inactive waitingList', (done) => {
+  it('Should inactive waitingList', (done) => {
     async.series([
       (callback) => {
         // save new waitingList
@@ -177,9 +172,10 @@ describe('lib/driver test suite', () => {
           callback();
         });
       },
-    ]);
-
-    return done(null);
+      (callback) => {
+        waitingList.remove(callback);
+      },
+    ], done);
   });
 
   afterEach((done) => {
