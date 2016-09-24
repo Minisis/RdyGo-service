@@ -114,11 +114,7 @@ describe('lib/driver test suite', () => {
   it('Should delete waitingList', (done) => {
     async.series([
       (callback) => {
-        // save new waitingList
-        waitingList.create((err, waitingListResult) => {
-          waitingList = waitingListResult;
-          callback();
-        });
+        waitingList.create(callback);
       },
       (callback) => {
         // remove waitingList after waitingList is created
