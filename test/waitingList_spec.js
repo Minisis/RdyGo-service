@@ -119,9 +119,9 @@ describe('lib/driver test suite', () => {
       (callback) => {
         // remove waitingList after waitingList is created
         waitingList.remove((err, waitingListResult) => {
-          WaitingList.findById(waitingListResult._id, (findErr, product) => {
+          WaitingList.findById(waitingListResult._id, (findErr, result) => {
             should(findErr).be.exactly(null);
-            should(product).be.exactly(null);
+            should(result).be.exactly(null);
             callback();
           });
         });
