@@ -13,7 +13,7 @@ let driver = {};
 let user = {};
 let waitingList = {};
 
-describe('lib/driver test suite', () => {
+describe('lib/waitingList test suite', () => {
   before((done) => {
     // read config file
     config.init({
@@ -74,7 +74,7 @@ describe('lib/driver test suite', () => {
     return done(null);
   });
 
-  it('Should create a new WaitingList', (done) => {
+  it('Should create a new waitingList', (done) => {
     async.series([
       (callback) => {
         waitingList.create((err, savedWatingList, saved) => {
