@@ -124,7 +124,7 @@ describe('lib/driver test suite', () => {
     ], done);
   });
 
-  it(('should add member to waitingList'), (done) => {
+  it(('should add a member to waitingList'), (done) => {
     let driver2 = {};
     async.series([
       (callback) => {
@@ -152,6 +152,7 @@ describe('lib/driver test suite', () => {
           departureTime: '04/07/2013',
         }, (cb) => {
           should(waitingList.members).be.an.Array();
+          should(waitingList.members).have.length(1);
           should(waitingList.members[0]).have.properties([
             'driverId',
             'departureTime',
