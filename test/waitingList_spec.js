@@ -55,8 +55,6 @@ describe('lib/driver test suite', () => {
       (callback) => {
         // create the instance of the waiting list
         waitingList = new WaitingList({
-          pickupLocation: { lng: -103.3773148, lat: 20.712713 },
-          dropOffLocation: { lng: -103.7008315, lat: 19.2665356 },
           departureDate: moment().format(),
           driverId: driver._id,
           isActive: true,
@@ -87,16 +85,13 @@ describe('lib/driver test suite', () => {
           should(savedWatingList).not.be.empty();
           should(savedWatingList).have.properties([
             'departureDate',
-            'pickupLoc',
-            'dropOffLoc',
             'driverId',
+            'members',
             'createdOn',
             'isActive',
           ]);
           should(parsedDepartureDate).be.an.instanceOf(Date);
           should(parsedDepartureDate.toString()).not.eql('Invalid Date');
-          should(savedWatingList.pickupLocation).be.eql({ lng: -103.3773148, lat: 20.712713 });
-          should(savedWatingList.dropOffLocation).be.eql({ lng: -103.7008315, lat: 19.2665356 });
           should(savedWatingList.driverId).be.exactly(driver._id);
           should(parsedCreatedOn).be.an.instanceOf(Date);
           should(parsedCreatedOn.toString()).not.eql('Invalid Date');
@@ -129,6 +124,51 @@ describe('lib/driver test suite', () => {
     ], done);
   });
 
+  it(('should add member to waitingList'), (done) => {
+    let driver2 = {};
+    async.series([
+      (callback) => {
+        // save new waitingList
+        waitingList.create((err, waitingListResult) => {
+          waitingList = waitingListResult;
+          callback();
+        });
+      },
+      (callback) => {
+        driver2 = new Driver({
+          email: 'audel91@gmail.com',
+          name: 'Audel',
+          city: 'GDL',
+          phoneNumber: '3121212121',
+          userId: user._id,
+          isActive: true,
+        });
+        driver2.create(callback);
+      },
+      (callback) => {
+        // add new member
+        waitingList.addMember({
+          driverId: driver2.id,
+          departureTime: '04/07/2013',
+        }, (cb) => {
+          should(waitingList.members).be.an.Array();
+          should(waitingList.members[0]).have.properties([
+            'driverId',
+            'departureTime',
+            'createdOn',
+          ]);
+          callback(cb);
+        });
+      },
+      (callback) => {
+        waitingList.remove(callback);
+      },
+      (callback) => {
+        driver2.remove(callback);
+      },
+    ], done);
+  });
+
   it('Should inactive waitingList', (done) => {
     async.series([
       (callback) => {
@@ -150,16 +190,13 @@ describe('lib/driver test suite', () => {
           should(waitingListResult).not.be.empty();
           should(waitingListResult).have.properties([
             'departureDate',
-            'pickupLoc',
-            'dropOffLoc',
             'driverId',
+            'members',
             'createdOn',
             'isActive',
           ]);
           should(parsedDepartureDate).be.an.instanceOf(Date);
           should(parsedDepartureDate.toString()).not.eql('Invalid Date');
-          should(waitingListResult.pickupLocation).be.eql({ lng: -103.3773148, lat: 20.712713 });
-          should(waitingListResult.dropOffLocation).be.eql({ lng: -103.7008315, lat: 19.2665356 });
           should(waitingListResult.driverId).be.exactly(driver._id);
           should(parsedCreatedOn).be.an.instanceOf(Date);
           should(parsedCreatedOn.toString()).not.eql('Invalid Date');
