@@ -56,6 +56,8 @@ describe('lib/driver test suite', () => {
         // create the instance of the waiting list
         waitingList = new WaitingList({
           departureDate: moment().format(),
+          origin: 'Colima, Colima, Mexico',
+          destination: 'Guadalajara, Jalisco, México',
           driverId: driver._id,
           isActive: true,
         });
@@ -85,6 +87,8 @@ describe('lib/driver test suite', () => {
           should(savedWatingList).not.be.empty();
           should(savedWatingList).have.properties([
             'departureDate',
+            'origin',
+            'destination',
             'driverId',
             'members',
             'createdOn',
@@ -191,6 +195,8 @@ describe('lib/driver test suite', () => {
           should(waitingListResult).not.be.empty();
           should(waitingListResult).have.properties([
             'departureDate',
+            'origin',
+            'destination',
             'driverId',
             'members',
             'createdOn',
