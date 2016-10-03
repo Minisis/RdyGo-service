@@ -57,6 +57,14 @@ describe('lib/ride test suite', () => {
         // add car to existing driver
         driver
           .createCar({
+            carName: 'jeep',
+            availableSeats: 3,
+          }, callback);
+      },
+      (d, c, callback) => {
+        // add car to existing driver
+        driver
+          .createCar({
             carName: 'civic',
             availableSeats: 2,
           }, callback);
@@ -78,7 +86,7 @@ describe('lib/ride test suite', () => {
       fare: 100,
       delayTolerance: 15,
       driverId: driver._id,
-      carId: driver.getCars()[0]._id,
+      carId: driver.getCars()[1]._id,
     });
     ride.create(done);
   });
@@ -112,6 +120,86 @@ describe('lib/ride test suite', () => {
       if (err) return done(err);
       should(existingRide).be.exactly(null);
       return done(null);
+    });
+  });
+  it('Should assign one driver to a ride', (done) => {
+    should(ride.passengers).have.length(0);
+    ride
+      .assignPassenger(driver, (err) => {
+        if (err) return done(err);
+        should(ride.passengers).have.length(1);
+        return done(null);
+      });
+  });
+  it('Should throw and error when assigning > availableSeats', (done) => {
+    let drivers = [
+      {
+        email: 'email1@gmail.com',
+        name: 'user1',
+        city: 'City1',
+        phoneNumber: '3121212121',
+        username: 'user1',
+        password: 'password1',
+        device: {
+          osVersion: 'iOS 10',
+          model: 'iphone 6s',
+        },
+      },
+      {
+        email: 'email2@gmail.com',
+        name: 'user2',
+        city: 'City2',
+        phoneNumber: '3121212121',
+        username: 'user2',
+        password: 'password2',
+        device: {
+          osVersion: 'iOS 10',
+          model: 'iphone 6s',
+        },
+      },
+    ];
+    async.waterfall([
+      (callback) => {
+        // iterate through drivers and create
+        async.map(drivers, (d, cb) => {
+          const newUser = new User({
+            username: d.username,
+            password: d.password,
+            device: d.device,
+          });
+          user.create((userErr) => {
+            if (userErr) return cb(userErr);
+            // create driver
+            const newDriver = new Driver({
+              email: d.email,
+              name: d.name,
+              city: d.city,
+              phoneNumber: d.phoneNumber,
+              userId: newUser._id,
+            });
+            return driver.create((driverErr) => {
+              if (driverErr) return cb(driverErr);
+              return cb(null, newDriver);
+            });
+          });
+        }, callback);
+      },
+      // assign new drivers to ride
+      (newDrivers, callback) => {
+        drivers = newDrivers;
+        async.each(newDrivers, ride.assignPassenger.bind(ride), callback);
+      },
+      // try to assign a third driver
+      (callback) => {
+        should(ride.passengers).have.length(2);
+        ride.assignPassenger(driver, callback);
+      },
+    ], (err) => {
+      should(err).be.ok();
+      should(err.code).be.exactly('NOAVAILABLESEATS');
+      should(err.message).be.exactly('There are no more available seats in this ride');
+      // remove drivers
+      async.each(drivers, (d, callback) => d.remove(callback), done);
     });
   });
   afterEach((done) => {
