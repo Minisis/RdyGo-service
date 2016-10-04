@@ -1,7 +1,6 @@
 const core = require('../lib/core');
 const config = require('my-config');
 const should = require('should');
-const moment = require('moment');
 const path = require('path');
 const async = require('async');
 const User = core.User;
@@ -55,7 +54,6 @@ describe('lib/driver test suite', () => {
       (callback) => {
         // create the instance of the waiting list
         waitingList = new WaitingList({
-          departureDate: moment().format(),
           origin: 'Colima, Colima, Mexico',
           destination: 'Guadalajara, Jalisco, México',
           driverId: driver._id,
@@ -78,7 +76,6 @@ describe('lib/driver test suite', () => {
     async.series([
       (callback) => {
         waitingList.create((err, savedWatingList, saved) => {
-          const parsedDepartureDate = new Date(savedWatingList.departureDate);
           const parsedCreatedOn = new Date(savedWatingList.createdOn);
 
           should(err).be.exactly(null);
@@ -86,7 +83,6 @@ describe('lib/driver test suite', () => {
           should(savedWatingList).be.an.Object();
           should(savedWatingList).not.be.empty();
           should(savedWatingList).have.properties([
-            'departureDate',
             'origin',
             'destination',
             'driverId',
@@ -94,8 +90,6 @@ describe('lib/driver test suite', () => {
             'createdOn',
             'isActive',
           ]);
-          should(parsedDepartureDate).be.an.instanceOf(Date);
-          should(parsedDepartureDate.toString()).not.eql('Invalid Date');
           should(savedWatingList.driverId).be.exactly(driver._id);
           should(parsedCreatedOn).be.an.instanceOf(Date);
           should(parsedCreatedOn.toString()).not.eql('Invalid Date');
@@ -186,7 +180,6 @@ describe('lib/driver test suite', () => {
       (callback) => {
         // remove waitingList after waitingList is created
         waitingList.inactive((err, waitingListResult, saved) => {
-          const parsedDepartureDate = new Date(waitingListResult.departureDate);
           const parsedCreatedOn = new Date(waitingListResult.createdOn);
 
           should(err).be.exactly(null);
@@ -194,7 +187,6 @@ describe('lib/driver test suite', () => {
           should(waitingListResult).be.an.Object();
           should(waitingListResult).not.be.empty();
           should(waitingListResult).have.properties([
-            'departureDate',
             'origin',
             'destination',
             'driverId',
@@ -202,8 +194,6 @@ describe('lib/driver test suite', () => {
             'createdOn',
             'isActive',
           ]);
-          should(parsedDepartureDate).be.an.instanceOf(Date);
-          should(parsedDepartureDate.toString()).not.eql('Invalid Date');
           should(waitingListResult.driverId).be.exactly(driver._id);
           should(parsedCreatedOn).be.an.instanceOf(Date);
           should(parsedCreatedOn.toString()).not.eql('Invalid Date');
