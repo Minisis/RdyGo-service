@@ -62,7 +62,7 @@ function startServer(configuration) {
 // It should be executed by the command interface
 if (require.main === module) {
   winston.error('you must execute the app by its command line interface');
-  winston.info('./bin/rdygo-service.js debug -c config.json -e [dev|prod]');
+  winston.info('./bin/rdygo-service.js -c config.json -e [dev|prod]');
 } else {
   // start the server
   module.exports = startServer;
