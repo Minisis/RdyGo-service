@@ -2,17 +2,19 @@
   "defaults": {
     "port": 3000
   },
-  "local": {
+  "dev": {
     "ip": "127.0.0.1",
+    "env" : "development",
     "mongo": {
       "server": "localhost",
       "port": 27017,
       "db": "rdygo"
     }
   },
-  "dev": {
+  "prod": {
     "ip": "$OPENSHIFT_NODEJS_IP",
     "port": "$OPENSHIFT_NODEJS_PORT",
+    "env" : "production",
     "mongo": {
       "server": "$OPENSHIFT_MONGODB_SERVER",
       "port": "$OPENSHIFT_MONGODB_PORT",

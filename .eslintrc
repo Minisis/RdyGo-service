@@ -5,6 +5,7 @@
   },
   "rules": {
     "strict": [2, "global"],
-    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "new-cap": ["error", { "capIsNewExceptions": ["CORS"] }]
   }
 }
