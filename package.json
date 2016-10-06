@@ -9,6 +9,10 @@
     "test-local": "npm run lint && CONFIGURATION=config.json ENVIRONMENT=local istanbul cover _mocha -- -t 10000 -R spec test",
     "start": "./bin/rdygo-service.js -c config.json -e prod"
   },
+  "engines": {
+    "node": ">= 6.2.2",
+    "npm": ">= 3.9.5"
+  },
   "keywords": [
     "rdygo",
     "api",
