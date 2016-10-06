@@ -56,6 +56,7 @@ server.use((req, res, next) => next(new restify.NotFoundError()));
 function startServer(configuration) {
   server.listen(configuration.port, () => {
     winston.info('restify started in %s mode on http://localhost:%d; press Ctrl-C to terminate.', configuration.env, configuration.port);
+    winston.info(`Nodejs Version: ${process.version}`);
   });
 }
 // Do not execute the application if app runs direclty i.e. node rdygo.js
