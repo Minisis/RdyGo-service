@@ -1,5 +1,5 @@
 const restify = require('restify');
-const packageJson = require('../package.json');
+const packageJson = require('./../package.json');
 const winston = require('winston');
 const router = require('./router');
 
