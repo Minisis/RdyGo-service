@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use stric';
 const program = require('commander');
-const pkg = require('../package');
 const myConfig = require('my-config');
 const path = require('path');
 const rdygoApp = require('../server/rdygo.js');
@@ -9,7 +8,7 @@ let configuration = {};
 
 // cli options
 program
-  .version(pkg.version)
+  .version('1.0.0')
   .option('-c, --configuration <configuration>', 'Configuration file for real estate application')
   .option('-e, --environment <environment>',
               'Environment for application state [dev, prod]', ['dev', 'prod'])
