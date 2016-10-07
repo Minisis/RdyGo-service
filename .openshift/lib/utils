@@ -7,9 +7,9 @@
 #  Returns the configured Node version
 function get_node_version() {
    # read the app's package.json file
-   package_json="${OPENSHIFT_REPO_DIR}package.json"
+   package_json="${OPENSHIFT_REPO_DIR}/package.json"
    if [ ! -f "$package_json" ] ; then
-     package_json="$(get_node_tmp_dir)package.json"
+     package_json="$(get_node_tmp_dir)/package.json"
    fi
 
    # attempt to detect the desired node.js version

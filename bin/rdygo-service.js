@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use stric';
 const program = require('commander');
 const pkg = require('../package');
 const myConfig = require('my-config');
