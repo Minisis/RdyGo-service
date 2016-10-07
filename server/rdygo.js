@@ -1,11 +1,10 @@
 const restify = require('restify');
-const packageJson = require('../package.json');
 const winston = require('winston');
 const router = require('./router');
 
 const server = restify.createServer({
   name: 'rdygo-service',
-  version: packageJson.version,
+  version: '1.0.0',
   formatters: {
     'application/json': (req, res, body, cb) => {
       const response = {
