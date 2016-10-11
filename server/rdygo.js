@@ -53,8 +53,9 @@ router(server);
 server.use((req, res, next) => next(new restify.NotFoundError()));
 
 function startServer(configuration) {
-  server.listen(configuration.port, () => {
-    winston.info('restify started in %s mode on http://localhost:%d; press Ctrl-C to terminate.', configuration.env, configuration.port);
+  server.listen(configuration.port, configuration.ip, () => {
+    winston.info('restify started in %s mode on %s:%d; press Ctrl-C to terminate.',
+        configuration.env, configuration.ip, configuration.port);
     winston.info(`Nodejs Version: ${process.version}`);
   });
 }
