@@ -3,7 +3,7 @@
 // GET, POST, PUT, DELETE
 
 function getDrivers(req, res) {
-  return res.send(201, 'response test we are live again');
+  return res.send(201, 'response test we are live again and with ci');
 }
 module.exports = (server) => {
   server.get('/drivers', getDrivers);
