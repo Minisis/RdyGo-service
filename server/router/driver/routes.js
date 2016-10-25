@@ -1,30 +1,26 @@
-const driverHandlders = require('./handlers');
+const handlders = require('./handlers');
 
-const routes = {
-  driver: {
-    routes: [
-      {
-        method: 'get',
-        path: 'drivers',
-        handler: driverHandlders.getDrivers,
-      },
-      // {
-      //   method: 'post',
-      //   path: 'drivers',
-      //   handler: driverHandlders,
-      // },
-      // {
-      //   method: 'put',
-      //   path: 'drivers',
-      //   handler: driverHandlders,
-      // },
-      // {
-      //   method: 'delet',
-      //   path: 'drivers',
-      //   handler: driverHandlders,
-      // },
-    ],
+const routes = [
+  {
+    method: 'get',
+    path: 'drivers',
+    handler: handlders.getDrivers,
   },
-};
+  // {
+  //   method: 'post',
+  //   path: 'drivers',
+  //   handler: handlders,
+  // },
+  // {
+  //   method: 'put',
+  //   path: 'drivers',
+  //   handler: handlders,
+  // },
+  // {
+  //   method: 'delet',
+  //   path: 'drivers',
+  //   handler: handlders,
+  // },
+];
 
 module.exports = routes;

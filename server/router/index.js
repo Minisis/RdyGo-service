@@ -1,12 +1,18 @@
-const router = require('./driver/routes'); // TODO: merge all routes into one global obj
+const driverRoutes = require('./driver/routes');
+const rideRoutes = require('./ride/routes');
+const userRoutes = require('./user/routes');
+const waitingListRoutes = require('./waitingList/routes');
 
+const routes = [...driverRoutes, ...rideRoutes, ...userRoutes, ...waitingListRoutes];
+
+
+// Routes Registry
 module.exports = (server) => {
-  Object.keys(router).forEach((modelRouter) => {
-    router[modelRouter].routes.forEach((model) => {
-      // Regiter the route only if it has method, path and handler
-      if (model.method && model.path && model.handler) {
-        server[model.method](model.path, model.handler);
-      }
-    });
-  });
+  let route;
+  for (route of routes) {
+    // Register the route only if it has method, path and handler
+    if (route.method && route.path && route.handler) {
+      server[route.method](route.path, route.handler);
+    }
+  }
 };
