@@ -6,7 +6,10 @@ const Driver = core.Driver;
 const handlers = {};
 
 handlers.getDrivers = (req, res) => {
-  res.send(201, Driver.getAll());
+  Driver.getAll((err, drivers) => {
+    // TODO: we need to handle err
+    res.send(201, drivers);
+  });
 };
 
 // This module return the global object

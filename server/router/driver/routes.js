@@ -6,11 +6,11 @@ const routes = [
     path: 'drivers',
     handler: handlders.getDrivers,
   },
-  // {
-  //   method: 'post',
-  //   path: 'drivers',
-  //   handler: handlders,
-  // },
+  {
+    method: 'post',
+    path: 'drivers/:id',
+    handler: handlders.getDriverById,
+  },
   // {
   //   method: 'put',
   //   path: 'drivers',

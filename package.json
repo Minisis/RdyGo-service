@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint lib test server",
     "test": "npm run lint && CONFIGURATION=config.json ENVIRONMENT=prod istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "test-local": "npm run lint && CONFIGURATION=config.json ENVIRONMENT=local istanbul cover _mocha -- -t 10000 -R spec test",
+    "test-local": "npm run lint && CONFIGURATION=config.json ENVIRONMENT=dev istanbul cover _mocha -- -t 10000 -R spec test",
     "start": "./bin/rdygo-service.js -c config.json -e prod"
   },
   "engines": {
