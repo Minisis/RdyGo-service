@@ -1,8 +1,17 @@
 {
   "defaults": {
-    "port": 3000
+    "port": 8080
   },
   "dev": {
+    "ip": "127.0.0.1",
+    "env" : "development",
+    "mongo": {
+      "server": "localhost",
+      "port": 27017,
+      "db": "rdygo"
+    }
+  },
+  "dockerProd": {
     "ip": "127.0.0.1",
     "env" : "development",
     "mongo": {
