@@ -2,7 +2,7 @@
   "defaults": {
     "port": 8080
   },
-  "prod": {
+  "dockerProd": {
     "ip": "127.0.0.1",
     "env" : "development",
     "mongo": {
@@ -11,7 +11,7 @@
       "db": "rdygo"
     }
   },
-  "_prod": {
+  "prod": {
     "ip": "$OPENSHIFT_NODEJS_IP",
     "port": "$OPENSHIFT_NODEJS_PORT",
     "env" : "production",
