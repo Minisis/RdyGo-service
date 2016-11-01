@@ -1,8 +1,8 @@
 {
   "defaults": {
-    "port": 3000
+    "port": 8080
   },
-  "dev": {
+  "prod": {
     "ip": "127.0.0.1",
     "env" : "development",
     "mongo": {
@@ -11,7 +11,7 @@
       "db": "rdygo"
     }
   },
-  "prod": {
+  "_prod": {
     "ip": "$OPENSHIFT_NODEJS_IP",
     "port": "$OPENSHIFT_NODEJS_PORT",
     "env" : "production",
