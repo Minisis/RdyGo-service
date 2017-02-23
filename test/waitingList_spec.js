@@ -12,7 +12,7 @@ let driver = {};
 let user = {};
 let waitingList = {};
 
-describe('lib/waitingList test suite', () => {
+describe.skip('lib/waitingList test suite', () => {
   before((done) => {
     // read config file
     config.init({

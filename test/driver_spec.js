@@ -36,7 +36,7 @@ describe('lib/driver test suite', () => {
     });
   });
 
-  beforeEach((done) => {
+  beforeEach(() => {
     driver = new Driver({
       email: 'lvaldovinos@gmail.com',
       name: 'luis',
@@ -45,7 +45,6 @@ describe('lib/driver test suite', () => {
       userId: user._id,
       isActive: true,
     });
-    driver.create(done);
   });
 
   it('should get a valid date', (done) => {
@@ -57,21 +56,25 @@ describe('lib/driver test suite', () => {
   });
 
   it('Should create a new driver', (done) => {
-    Driver.getAll((err, drivers) => {
+    driver.create((err, SavedDriver) => {
       if (err) return done(err);
-      should(drivers).be.an.Array();
-      should(drivers).have.length(1);
-      should(drivers[0].email).be.exactly('lvaldovinos@gmail.com');
-      should(drivers[0].name).be.exactly('luis');
-      should(drivers[0].city).be.exactly('GDL');
-      should(drivers[0].phoneNumber).be.exactly('3121212121');
-      should(drivers[0].isActive).be.true();
-      return done(null);
+      should(SavedDriver).be.an.Object();
+      should(SavedDriver.email).be.exactly('lvaldovinos@gmail.com');
+      should(SavedDriver.name).be.exactly('luis');
+      should(SavedDriver.city).be.exactly('GDL');
+      should(SavedDriver.phoneNumber).be.exactly('3121212121');
+      should(SavedDriver.isActive).be.true();
+      return true;
     });
+    // Remove saved driver
+    driver.remove(done);
   });
 
   it('Should create a car', (done) => {
     async.series([
+      (callback) => {
+        driver.create(callback);
+      },
       (callback) => {
         driver.createCar({
           carName: 'jeep',
@@ -84,6 +87,10 @@ describe('lib/driver test suite', () => {
         should(cars[0].carName).be.exactly('jeep');
         should(cars[0].availableSeats).be.exactly(4);
         callback();
+      },
+      (callback) => {
+        // Remove saved driver
+        driver.remove(callback);
       },
     ]);
     return done(null);
@@ -127,10 +134,6 @@ describe('lib/driver test suite', () => {
       should(err).be.ok();
       return done(null);
     });
-  });
-
-  afterEach((done) => {
-    driver.remove(done);
   });
 
   after((done) => {
