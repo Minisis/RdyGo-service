@@ -8,8 +8,8 @@ const routes = [
   },
   {
     method: 'post',
-    path: 'drivers/:id',
-    handler: handlders.getDriverById,
+    path: 'drivers',
+    handler: handlders.createDriver,
   },
   // {
   //   method: 'put',

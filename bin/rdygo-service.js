@@ -4,6 +4,7 @@ const program = require('commander');
 const myConfig = require('my-config');
 const path = require('path');
 const rdygoApp = require('../server/rdygo.js');
+const core = require('../lib/core');
 let configuration = {};
 
 // cli options
@@ -24,6 +25,8 @@ if (!process.argv.slice(2).length) {
     env: program.environment,
   });
 
+  // DB CONNECTION
+  core.connect(configuration.mongo);
   // execute rdygo application
   rdygoApp(configuration);
 }

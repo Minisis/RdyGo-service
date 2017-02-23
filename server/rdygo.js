@@ -1,6 +1,5 @@
 const restify = require('restify');
 const winston = require('winston');
-const core = require('../lib/core');
 const router = require('./router');
 
 const server = restify.createServer({
@@ -29,7 +28,7 @@ const server = restify.createServer({
       if (body instanceof Error) {
         response.code = body.statusCode;
         response.message = body.body;
-        response.data = null;
+        response.data = 'null';
         return cb(null, JSON.stringify(response.getFinal()));
       }
       response.message = null;
@@ -59,7 +58,6 @@ function startServer(configuration) {
         configuration.env, configuration.ip, configuration.port);
     winston.info(`Nodejs Version: ${process.version}`);
   });
-  // core.connect(configuration.mongo);
 }
 // Do not execute the application if app runs direclty i.e. node rdygo.js
 // It should be executed by the command interface
