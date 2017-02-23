@@ -28,7 +28,7 @@ const server = restify.createServer({
       if (body instanceof Error) {
         response.code = body.statusCode;
         response.message = body.body;
-        response.data = 'null';
+        response.data = null;
         return cb(null, JSON.stringify(response.getFinal()));
       }
       response.message = null;
